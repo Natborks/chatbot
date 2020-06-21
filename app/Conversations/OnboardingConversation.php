@@ -17,18 +17,17 @@ class OnboardingConversation extends Conversation
     public function run()
     {
         //
-        $this->askName();
+       $this->askFirstName();
     }
 
-    public function askName()
+    public function askFirstname()
     {
-        $this->ask('What is your name?', function(Answer $answer) {
+        $this->ask('Hello! What is your firstname?', function(Answer $answer) {
+            // Save result
             $this->firstname = $answer->getText();
-
             $this->say('Nice to meet you '.$this->firstname);
+            $this->askEmail();
         });
-
-        $this->askMood();
     }
 
     public function askMood()

@@ -9,9 +9,6 @@ use App\Conversations\OnboardingConversation;
 
 class BotManController extends Controller
 {
-    /**
-     * Place your BotMan logic here.
-     */
     public function handle()
     {
         $botman = app('botman');
@@ -19,30 +16,14 @@ class BotManController extends Controller
         $botman->listen();
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function tinker()
     {
         return view('tinker');
     }
 
-    /**
-     * Loaded through routes/botman.php
-     * @param  BotMan $bot
-     */
     public function startConversation(BotMan $bot)
     {
-        $bot->startConversation(new OnboardingConversation);
+        $bot->startConversation(new OnboardingConversation());
     }
-
-    public function greeting() {
-        $botman = resolve('botman');
-
-        $botman->hears('Hello', function($bot) {
-            $bot->startConversation(new OnboardingConversation);
-        });
-    }
-
 
 }
